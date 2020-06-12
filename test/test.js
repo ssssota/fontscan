@@ -22,7 +22,7 @@ describe('FontDescriptor', () => {
   }
 
   describe('#createFromPath', () => {
-    FontDescriptor.createFromPath()
+    //FontDescriptor.createFromPath()
   })
 });
 
