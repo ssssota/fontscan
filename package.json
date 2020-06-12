@@ -6,7 +6,8 @@
   "scripts": {
     "tsc": "tsc",
     "build": "tsc",
-    "test": "mocha"
+    "test": "mocha",
+    "prepublishOnly": "tsc"
   },
   "keywords": [],
   "author": "",
