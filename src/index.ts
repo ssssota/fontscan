@@ -9,7 +9,7 @@ export const getFontList = async (options?: {
   // path to fullpath
   const fixedDirs = options?.customDirectories?.map(dir => path.resolve(dir));
   const list = (await getSystemFonts({
-    additionalFolders: fixedDirs,
+    additionalFolders: fixedDirs || [],
     extensions: ['ttf', 'otf', 'ttc', 'woff', 'woff2', 'dfont']
   }))
     .map(path => FontDescriptor.createFromPath(path))
