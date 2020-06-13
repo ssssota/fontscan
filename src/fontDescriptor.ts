@@ -22,8 +22,9 @@ export class FontDescriptor {
 
   constructor(font: Font, path: string) {
     this.path = path;
-    this.postscriptName = font.postscriptName?.toString();
-    this.family = font.familyName?.toString();
+    this.postscriptName = font.postscriptName.toString();
+    this.family = font.familyName.toString();
+    this.style = font.subfamilyName;
 
     const isFixedPitch = (font as any).post?.isFixedPitch;
     this.monospace = isFixedPitch !== 0;
@@ -34,15 +35,15 @@ export class FontDescriptor {
     this.weight = os2.usWeightClass;
 
     const fsSelection = os2.fsSelection;
-    const regular = fsSelection?.regular;
-    const bold = fsSelection?.bold;
+    //const regular = fsSelection?.regular;
+    //const bold = fsSelection?.bold;
     const italic = fsSelection?.italic;
     const oblique = fsSelection?.oblique;
     this.italic = italic || oblique;
-    this.style = (
-      (regular? 'Regular ': '') +
-      (bold? 'Bold ': '') +
-      (this.italic? 'Italic': '')
-    ).trim();
+    //this.style = (
+    //  (regular? 'Regular ': '') +
+    //  (bold? 'Bold ': '') +
+    //  (this.italic? 'Italic': '')
+    //).trim();
   }
 }
