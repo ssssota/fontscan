@@ -1,6 +1,6 @@
 {
   "name": "fontscan",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Get font list in specified directory(default system fonts).",
   "main": "dist/index.js",
   "scripts": {
