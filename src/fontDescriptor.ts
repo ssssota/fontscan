@@ -22,9 +22,9 @@ export class FontDescriptor {
 
   constructor(font: Font, path: string) {
     this.path = path;
-    this.postscriptName = font.postscriptName.toString();
-    this.family = font.familyName.toString();
-    this.style = font.subfamilyName.toString();
+    this.postscriptName = fixGarbled(font.postscriptName.toString());
+    this.family = fixGarbled(font.familyName.toString());
+    this.style = fixGarbled(font.subfamilyName.toString());
 
     const isFixedPitch = (font as any).post?.isFixedPitch;
     this.monospace = isFixedPitch !== 0;
@@ -37,4 +37,8 @@ export class FontDescriptor {
     const fsSelection = os2.fsSelection;
     this.italic = !!(fsSelection?.italic);
   }
+}
+
+function fixGarbled(str: string) {
+  return str.replace(/\\u0000/g, '')
 }
