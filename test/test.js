@@ -1,5 +1,5 @@
 const assert = require('assert')
-const fontinfo = require('../dist/index');
+const fontscan = require('../dist/index');
 const FontDescriptor = require('../dist/fontDescriptor').default;
 
 describe('FontDescriptor', () => {
@@ -26,8 +26,8 @@ describe('FontDescriptor', () => {
   })
 });
 
-describe('fontinfo test', () => {
+describe('fontscan test', () => {
   it('shoud have a function', () => {
-    assert.equal(typeof fontinfo.getFontList, 'function');
+    assert.equal(typeof fontscan.getFontList, 'function');
   });
 });

@@ -1,4 +1,4 @@
-# Fontinfo
+# fontscan
 
 Get font list in specified directory(default system fonts).
 
@@ -8,7 +8,7 @@ cf.
 
 ||is native|accuracy|Custom directory|
 |---|---|---|---|
-|Fontinfo|No. Only node.js|Maybe not accurate|Yes. Not only installed font|
+|fontscan|No. Only node.js|Maybe not accurate|Yes. Not only installed font|
 |font-manager|Yes. Made with C language|Maybe accurate|No. Only installed font|
 
 ## Usage
@@ -16,8 +16,8 @@ cf.
 Get system fonts.
 
 ```js
-const fontinfo = require('fontinfo');
-console.log(await fontinfo.getFontList());
+const fontscan = require('fontscan');
+console.log(await fontscan.getFontList());
 
 // output
 [
@@ -49,7 +49,7 @@ Fonts in specified directory.
 Note: We recommend that you do not specify the root directory, as custom directories are searched recursively.
 
 ```js
-await fontinfo.getFontList({
+await fontscan.getFontList({
   customDirectories: [
     `C:\\Users\\${username}\\Fonts`,
     `D:\\Fonts`
@@ -60,7 +60,7 @@ await fontinfo.getFontList({
 
 ## API
 
-### `fontinfo.getFontList(options?): Promise<FontDescriptor[]>`
+### `fontscan.getFontList(options?): Promise<FontDescriptor[]>`
 
 - `options`
   - `customDirectories`

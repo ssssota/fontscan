@@ -1,7 +1,7 @@
 {
-  "name": "fontinfo",
+  "name": "fontscan",
   "version": "0.1.0",
-  "description": "",
+  "description": "Get font list in specified directory(default system fonts).",
   "main": "dist/index.js",
   "scripts": {
     "tsc": "tsc",
@@ -9,8 +9,10 @@
     "test": "mocha",
     "prepublishOnly": "tsc"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "font", "list", "info", "ttf", "otf"
+  ],
+  "author": "ssssota",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^14.0.13",
