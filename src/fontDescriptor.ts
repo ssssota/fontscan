@@ -14,11 +14,11 @@ export default class FontDescriptor {
   readonly path: string;
   readonly family: string;
   readonly postscriptName: string;
-  readonly width?: number;
-  readonly weight?: number;
-  readonly style?: string;
-  readonly italic?: boolean;
-  readonly monospace?: boolean;
+  readonly width: number = 500;
+  readonly weight: number = 3;
+  readonly style: string = 'Regular';
+  readonly italic: boolean = false;
+  readonly monospace: boolean = false;
 
   constructor(font: Font, path: string) {
     this.path = path;

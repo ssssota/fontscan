@@ -77,8 +77,8 @@ Font descriptor has basic font informations.
 - `path: string;`
 - `family: string;`
 - `postscriptName: string;`
-- `width?: number;`
-- `weight?: number;`
-- `style?: string;`
-- `italic?: boolean;`
-- `monospace?: boolean;`
+- `width: number;`
+- `weight: number;`
+- `style: string;`
+- `italic: boolean;`
+- `monospace: boolean;`

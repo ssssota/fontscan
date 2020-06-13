@@ -6,11 +6,11 @@ const isFontDescriptor = fd => {
   assert.equal(typeof fd.path, 'string');
   assert.equal(typeof fd.postscriptName, 'string');
   assert.equal(typeof fd.family, 'string');
-  // assert.equal(typeof fd.width, 'number');
-  // assert.equal(typeof fd.weight, 'number');
-  // assert.equal(typeof fd.style, 'string');
-  // assert.equal(typeof fd.italic, 'boolean');
-  // assert.equal(typeof fd.monospace, 'boolean');
+  assert.equal(typeof fd.width, 'number');
+  assert.equal(typeof fd.weight, 'number');
+  assert.equal(typeof fd.style, 'string');
+  assert.equal(typeof fd.italic, 'boolean');
+  assert.equal(typeof fd.monospace, 'boolean');
 }
 
 describe('FontDescriptor', () => {
