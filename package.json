@@ -1,6 +1,6 @@
 {
   "name": "fontscan",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Get font list in specified directory(default system fonts).",
   "main": "dist/index.js",
   "scripts": {
@@ -10,7 +10,11 @@
     "prepublishOnly": "tsc"
   },
   "keywords": [
-    "font", "list", "info", "ttf", "otf"
+    "font",
+    "list",
+    "info",
+    "ttf",
+    "otf"
   ],
   "author": "ssssota",
   "license": "MIT",
