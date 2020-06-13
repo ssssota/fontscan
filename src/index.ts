@@ -1,5 +1,5 @@
 import getSystemFonts from 'get-system-fonts';
-import FontDescriptor from './fontDescriptor';
+import { FontDescriptor } from './fontDescriptor';
 import path from 'path';
 
 export const getFontList = async (options?: {

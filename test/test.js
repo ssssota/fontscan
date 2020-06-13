@@ -1,6 +1,6 @@
 const assert = require('assert')
 const fontscan = require('../dist/index');
-const FontDescriptor = require('../dist/fontDescriptor').default;
+const { FontDescriptor } = require('../dist/fontDescriptor');
 
 const isFontDescriptor = fd => {
   assert.equal(typeof fd.path, 'string');
@@ -26,7 +26,7 @@ describe('FontDescriptor', () => {
   })
 });
 
-describe('fontscan test', () => {
+describe('fontscan', () => {
   it('shoud have a function', () => {
     assert.equal(typeof fontscan.getFontList, 'function');
   });

@@ -1,6 +1,6 @@
 import fontkit, { Font } from 'fontkit';
 
-export default class FontDescriptor {
+export class FontDescriptor {
   static createFromPath(path: string): FontDescriptor | FontDescriptor[] {
     const font = fontkit.openSync(path);
     if ('fonts' in font) {
