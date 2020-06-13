@@ -22,9 +22,9 @@ export class FontDescriptor {
 
   constructor(font: Font, path: string) {
     this.path = path;
-    this.postscriptName = fixGarbled(font.postscriptName.toString());
-    this.family = fixGarbled(font.familyName.toString());
-    this.style = fixGarbled(font.subfamilyName.toString());
+    this.postscriptName = fixIncorrectString(font.postscriptName);
+    this.family = fixIncorrectString(font.familyName);
+    this.style = fixIncorrectString(font.subfamilyName);
 
     const isFixedPitch = (font as any).post?.isFixedPitch;
     this.monospace = isFixedPitch !== 0;
@@ -39,6 +39,11 @@ export class FontDescriptor {
   }
 }
 
-function fixGarbled(str: string) {
-  return str.replace(/\\u0000/g, '')
+function fixIncorrectString(str: string | Buffer) {
+  if (typeof str === 'string') return str;
+  let newStr = '';
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] !== 0) newStr += Buffer.from([str[i]]).toString();
+  }
+  return newStr;
 }
