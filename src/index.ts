@@ -13,7 +13,7 @@ export const getFontList = async (options?: {
     extensions: ['ttf', 'otf', 'ttc', 'woff', 'woff2', 'dfont']
   }))
     .map(path => FontDescriptor.createFromPath(path))
-    .flat();
+    .reduce((acc: FontDescriptor[], val) => acc.concat(val), []);
 
   if (!fixedDirs || fixedDirs.length === 0 || !options?.onlyCustomDirectories) {
     return list;
