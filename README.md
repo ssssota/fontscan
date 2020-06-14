@@ -11,6 +11,7 @@ cf.
 |native|No, **only JS**|Yes, made with C|
 |**custom directories**|**Yes**, you can|No, only system fonts|
 |accuracy|Not good|**Good**|
+|speed|Slow|**Fast**|
 
 [more info...](https://github.com/ssssota/fontscan-vs-font-manager)
 
