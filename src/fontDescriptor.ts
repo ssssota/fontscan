@@ -1,16 +1,18 @@
 import fontkit, { Font } from 'fontkit';
+import path from 'path';
 
 export class FontDescriptor {
-  static createFromPath(path: string): FontDescriptor | FontDescriptor[] {
-    const font = fontkit.openSync(path);
+  static createFromPath(filepath: string): FontDescriptor | FontDescriptor[] {
+    const fixedPath = path.resolve(filepath);
+    const font = fontkit.openSync(fixedPath);
     if ('fonts' in font) {
       // TrueTypeCollection have multiple fonts in font file
       // eslint-disable-next-line
       return ((font as any).fonts as Font[]).map(
-        (f) => new FontDescriptor(f, path)
+        (f) => new FontDescriptor(f, fixedPath)
       );
     } else {
-      return new FontDescriptor(font, path);
+      return new FontDescriptor(font, fixedPath);
     }
   }
 
@@ -23,8 +25,8 @@ export class FontDescriptor {
   readonly italic: boolean = false;
   readonly monospace: boolean = false;
 
-  constructor(font: Font, path: string) {
-    this.path = path;
+  constructor(font: Font, filepath: string) {
+    this.path = filepath;
     // font.*Name properties will return Buffer (like Buffer<00 7a 00 ee ...>) occasionally
     this.postscriptName = fixIncorrectString(font.postscriptName);
     this.family = fixIncorrectString(font.familyName);
