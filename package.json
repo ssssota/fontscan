@@ -18,6 +18,14 @@
   ],
   "author": "ssssota",
   "license": "MIT",
+  "homepage": "https://github.com/ssssota/fontscan#fontscan",
+  "bugs": {
+    "url": "https://github.com/ssssota/fontscan/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ssssota/fontscan"
+  },
   "devDependencies": {
     "@types/node": "^14.0.13",
     "@typescript-eslint/eslint-plugin": "^3.2.0",
