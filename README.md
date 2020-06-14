@@ -68,8 +68,10 @@ await fontscan.getFontList({
 - `options`
   - `customDirectories`
     - `string[]`
+    - default: `[]`
   - `onlyCustomDirectories`
     - `boolean`
+    - default: `false`
 
 ### `FontDescriptor`
 
