@@ -33,7 +33,28 @@ describe('FontDescriptor', () => {
   });
 
   describe('#createFromPath', () => {
-    //FontDescriptor.createFromPath()
+    it('should return FontDescriptor', () => {
+      const fd = FontDescriptor.createFromPath(
+        '.\\test\\data\\mplus-2m-regular.ttf'
+      );
+      isFontDescriptor(fd);
+    });
+
+    it('should return correct status(M+ 2m Regular)', () => {
+      const fd = FontDescriptor.createFromPath(
+        './test/data/mplus-2m-regular.ttf'
+      );
+      assert.ok(
+        fd.path.replace(/\\/g, '/').endsWith('/test/data/mplus-2m-regular.ttf')
+      );
+      assert.equal(fd.family, 'M+ 2m');
+      assert.equal(fd.postscriptName, 'mplus-2m-regular');
+      assert.equal(fd.style, 'Regular');
+      assert.equal(fd.weight, 400);
+      assert.equal(fd.width, 5);
+      assert.equal(fd.italic, false);
+      assert.equal(fd.monospace, false);
+    });
   });
 });
 
@@ -43,10 +64,16 @@ describe('fontscan', () => {
   });
 
   describe('#getFontList', () => {
-    it('should return fontdescriptor array', async () => {
-      const fdList = await fontscan.getFontList();
-      assert.ok(Array.isArray(fdList));
-      fdList.forEach((fd) => isFontDescriptor(fd));
+    it('should return fontdescriptor array', () => {
+      return fontscan
+        .getFontList()
+        .then((fdList) => {
+          assert.ok(Array.isArray(fdList));
+          return fdList;
+        })
+        .then((fdList) => {
+          fdList.forEach((fd) => isFontDescriptor(fd));
+        });
     });
   });
 });
