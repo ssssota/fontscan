@@ -1,8 +1,14 @@
-const assert = require('assert')
+/*
+eslint-disable 
+  @typescript-eslint/no-var-requires,
+  @typescript-eslint/no-unsafe-member-access,
+  @typescript-eslint/no-unsafe-call
+*/
+const assert = require('assert');
 const fontscan = require('../dist/index');
 const { FontDescriptor } = require('../dist/fontDescriptor');
 
-const isFontDescriptor = fd => {
+const isFontDescriptor = (fd) => {
   assert.equal(typeof fd.path, 'string');
   assert.equal(typeof fd.postscriptName, 'string');
   assert.equal(typeof fd.family, 'string');
@@ -11,8 +17,13 @@ const isFontDescriptor = fd => {
   assert.equal(typeof fd.style, 'string');
   assert.equal(typeof fd.italic, 'boolean');
   assert.equal(typeof fd.monospace, 'boolean');
-}
+};
 
+/*
+global
+  describe: false
+  it: false
+*/
 describe('FontDescriptor', () => {
   it('should have a static function', () => {
     assert.equal(typeof FontDescriptor.createFromPath, 'function');
@@ -23,7 +34,7 @@ describe('FontDescriptor', () => {
 
   describe('#createFromPath', () => {
     //FontDescriptor.createFromPath()
-  })
+  });
 });
 
 describe('fontscan', () => {
@@ -35,7 +46,7 @@ describe('fontscan', () => {
     it('should return fontdescriptor array', async () => {
       const fdList = await fontscan.getFontList();
       assert.ok(Array.isArray(fdList));
-      fdList.forEach(fd => isFontDescriptor(fd));
-    })
-  })
+      fdList.forEach((fd) => isFontDescriptor(fd));
+    });
+  });
 });
