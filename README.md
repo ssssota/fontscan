@@ -96,3 +96,9 @@ Font descriptor has basic font informations.
 4. Rebase your local changes against the master branch
 5. Run test suite with the `npm test` command and confirm that it passes
 6. Create new Pull Request
+
+**Please tell me if my English is wrong**
+
+## LICENSE
+
+[MIT](LICENSE)
