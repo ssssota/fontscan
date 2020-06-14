@@ -79,14 +79,17 @@ Font descriptor has basic font informations.
 
 #### Properties
 
-- `path: string;`
-- `family: string;`
-- `postscriptName: string;`
-- `width: number;`
-- `weight: number;`
-- `style: string;`
-- `italic: boolean;`
-- `monospace: boolean;`
+- `path: string`
+- `family: string`
+- `postscriptName: string`
+- `width: number`
+  - detail [microsoft document](https://docs.microsoft.com/en-us/typography/opentype/spec/os2#uswidthclass)
+- `weight: number`
+  - detail [microsoft document](https://docs.microsoft.com/en-us/typography/opentype/spec/os2#usweightclass)
+- `style: string`
+  - e.g. `Regular`, `Bold`, `Italic`, `Bold italic`
+- `italic: boolean`
+- `monospace: boolean`
 
 ## Contribution
 
