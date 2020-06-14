@@ -25,6 +25,7 @@ export class FontDescriptor {
 
   constructor(font: Font, path: string) {
     this.path = path;
+    // font.*Name properties will return Buffer (like Buffer<00 7a 00 ee ...>) occasionally
     this.postscriptName = fixIncorrectString(font.postscriptName);
     this.family = fixIncorrectString(font.familyName);
     this.style = fixIncorrectString(font.subfamilyName);
