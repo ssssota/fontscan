@@ -6,10 +6,13 @@ This project respect [font-manager](https://github.com/foliojs/font-manager).
 
 cf.
 
-||is native|accuracy|Custom directory|
-|---|---|---|---|
-|fontscan|No. Only node.js|Maybe not accurate|Yes. Not only installed font|
-|font-manager|Yes. Made with C language|Maybe accurate|No. Only installed font|
+||fontscan|font-manager|
+|---|---|---|
+|native|No, only JS|Yes, made with C|
+|**custom directories**|Yes, you can|No, only system fonts|
+|accuracy|Not good|Good|
+
+[more info...](https://github.com/ssssota/fontscan-vs-font-manager)
 
 ## Usage
 
