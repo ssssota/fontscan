@@ -8,9 +8,9 @@ cf.
 
 ||fontscan|font-manager|
 |---|---|---|
-|native|No, only JS|Yes, made with C|
-|**custom directories**|Yes, you can|No, only system fonts|
-|accuracy|Not good|Good|
+|native|No, **only JS**|Yes, made with C|
+|**custom directories**|**Yes**, you can|No, only system fonts|
+|accuracy|Not good|**Good**|
 
 [more info...](https://github.com/ssssota/fontscan-vs-font-manager)
 
