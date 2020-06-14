@@ -7,6 +7,19 @@ export const getFontList = async (options?: {
   customDirectories?: string[];
   onlyCustomDirectories?: boolean;
 }): Promise<FontDescriptor[]> => {
+  if (options && typeof options !== 'object') {
+    throw new TypeError('options must be `object`');
+  }
+  if (options?.customDirectories && !Array.isArray(options.customDirectories)) {
+    throw new TypeError('options.customDirectories must be `string[]`');
+  }
+  if (
+    options?.onlyCustomDirectories &&
+    typeof options.onlyCustomDirectories !== 'boolean'
+  ) {
+    throw new TypeError('options.onlyCustomDirectories must be `boolean`');
+  }
+
   // path to fullpath
   const fixedDirs =
     options?.customDirectories?.map((dir) => path.resolve(dir)) || [];
