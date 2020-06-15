@@ -1,9 +1,16 @@
 import fontkit, { Font } from 'fontkit';
 import path from 'path';
+import fs from 'fs';
 
 export class FontDescriptor {
   static createFromPath(filepath: string): FontDescriptor | FontDescriptor[] {
+    if (typeof filepath !== 'string') {
+      throw new TypeError('filepath must be `string`');
+    }
     const fixedPath = path.resolve(filepath);
+    if (!fs.existsSync(fixedPath)) {
+      throw new Error(`${fixedPath} is not exist`);
+    }
     const font = fontkit.openSync(fixedPath);
     if ('fonts' in font) {
       // TrueTypeCollection have multiple fonts in font file

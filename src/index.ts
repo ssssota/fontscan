@@ -29,8 +29,14 @@ export const getFontList = async (options?: {
       extensions: ['ttf', 'otf', 'ttc', 'woff', 'woff2', 'dfont'],
     })
   )
-    .map((path) => FontDescriptor.createFromPath(path))
-    .reduce((acc: FontDescriptor[], val) => acc.concat(val), []); // this reduce means arr.flat()
+    .map((path) => {
+      try {
+        return FontDescriptor.createFromPath(path);
+      } catch (error) {
+        return;
+      }
+    })
+    .reduce((acc: FontDescriptor[], val) => (val ? acc.concat(val) : acc), []); // this reduce means arr.flat()
 
   if (fixedDirs.length === 0 || !options?.onlyCustomDirectories) {
     return list;
