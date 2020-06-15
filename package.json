@@ -5,8 +5,10 @@
   "main": "dist/index.js",
   "scripts": {
     "tsc": "tsc",
+    "mocha": "mocha",
     "build": "tsc",
-    "test": "mocha",
+    "watch": "tsc --watch",
+    "test": "run-s tsc mocha",
     "prepublishOnly": "tsc"
   },
   "keywords": [
@@ -34,6 +36,7 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.3",
     "mocha": "^8.0.1",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.0.5",
     "typescript": "^3.9.5"
   },
