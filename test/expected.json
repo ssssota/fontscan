@@ -1,0 +1,54 @@
+{
+  "fonts": [
+    {
+      "path": "data/mplus-1c-light.ttf",
+      "family": "M+ 1c light",
+      "postscriptName": "mplus-1c-light",
+      "style": "Regular",
+      "weight": 300,
+      "width": 5,
+      "italic": false,
+      "monospace": false
+    },
+    {
+      "path": "data/mplus-2m-regular.ttf",
+      "family": "M+ 2m",
+      "postscriptName": "mplus-2m-regular",
+      "style": "Regular",
+      "weight": 400,
+      "width": 5,
+      "italic": false,
+      "monospace": false
+    },
+    {
+      "path": "data/mplus-2p-black.ttf",
+      "family": "M+ 2p black",
+      "postscriptName": "mplus-2p-black",
+      "style": "Regular",
+      "weight": 900,
+      "width": 5,
+      "italic": false,
+      "monospace": false
+    },
+    {
+      "path": "data/Roboto-Regular.ttf",
+      "family": "Roboto",
+      "postscriptName": "Roboto-Regular",
+      "style": "Regular",
+      "weight": 400,
+      "width": 5,
+      "italic": false,
+      "monospace": false
+    },
+    {
+      "path": "data/Roboto-Italic.ttf",
+      "family": "Roboto",
+      "postscriptName": "Roboto-Italic",
+      "style": "Italic",
+      "weight": 400,
+      "width": 5,
+      "italic": true,
+      "monospace": false
+    }
+  ]
+}
