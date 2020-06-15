@@ -42,7 +42,7 @@ describe('FontDescriptor', function () {
 
   describe('#createFromPath', function () {
     expected.fonts.map((fontdata) => {
-      it(`should return correct status ${fontdata.name}`, () => {
+      it(`should return correct status for ${fontdata.family}`, () => {
         const fd = FontDescriptor.createFromPath(
           path.join('test', fontdata.path)
         );
@@ -50,6 +50,13 @@ describe('FontDescriptor', function () {
         fontdata.path = path.join(__dirname, fontdata.path);
         assert.deepEqual(fd, fontdata);
       });
+    });
+
+    it('should throw error', () => {
+      assert.throws(FontDescriptor.createFromPath.bind(null, [1]));
+      assert.throws(
+        FontDescriptor.createFromPath.bind(null, ['./not-exist-file.ttf'])
+      );
     });
   });
 });
@@ -77,6 +84,21 @@ describe('fontscan', function () {
         .then((fdList) => {
           assert.equal(fdList.length, expected.fonts.length);
         });
+    });
+
+    it('should throw error', async () => {
+      await fontscan
+        .getFontList('not object')
+        .then(assert.fail)
+        .catch(() => assert.ok(true));
+      await fontscan
+        .getFontList({ customDirectories: 'not array' })
+        .then(assert.fail)
+        .catch(() => assert.ok(true));
+      await fontscan
+        .getFontList({ onlyCustomDirectories: 'not boolean' })
+        .then(assert.fail)
+        .catch(() => assert.ok(true));
     });
   });
 });
