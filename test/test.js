@@ -75,7 +75,7 @@ describe('fontscan', function () {
           onlyCustomDirectories: true,
         })
         .then((fdList) => {
-          assert.equal(fdList.length, 5);
+          assert.equal(fdList.length, expected.fonts.length);
         });
     });
   });
