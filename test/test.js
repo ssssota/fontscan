@@ -25,8 +25,6 @@ const isFontDescriptor = (fd) => {
   assert.equal(typeof fd.monospace, 'boolean');
 };
 
-// todo: 各関数の型エラーチェックをする
-
 /*
 global
   describe: false
