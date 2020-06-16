@@ -1,7 +1,89 @@
 import getSystemFonts from 'get-system-fonts';
+import recursiveWalk from 'get-system-fonts/dist/recursiveWalk';
 import { FontDescriptor } from './fontDescriptor';
 import path from 'path';
 import fs from 'fs';
+
+const FONTKIT_AVAILABLE_FONT_EXTENSIONS = [
+  'ttf',
+  'otf',
+  'ttc',
+  'woff',
+  'woff2',
+  'dfont',
+];
+
+export const getDescriptorFromPaths = (
+  fontPaths: string[]
+): Promise<FontDescriptor[]> =>
+  new Promise((resolve, reject) => {
+    try {
+      const fontDescriptors = fontPaths
+        .map((fontPath) => {
+          try {
+            return FontDescriptor.createFromPath(fontPath);
+          } catch (error) {
+            return;
+          }
+        })
+        .reduce(
+          (acc: FontDescriptor[], val) => (val ? acc.concat(val) : acc),
+          []
+        );
+      resolve(fontDescriptors);
+    } catch (error) {
+      reject(error);
+    }
+  });
+
+/**
+ * Search fonts in directory.
+ * @param {string} dirPath Directory path to search for fonts.
+ */
+export const getDirectoryFonts = async (
+  dirPath: string
+): Promise<FontDescriptor[]> => {
+  if (typeof dirPath !== 'string') {
+    throw new TypeError('dirPath must be `string`');
+  }
+
+  const fontPaths = await recursiveWalk(
+    [dirPath],
+    FONTKIT_AVAILABLE_FONT_EXTENSIONS
+  );
+  return getDescriptorFromPaths(fontPaths);
+};
+
+/**
+ * Search fonts in directories.
+ * @param {string[]} dirPaths Diresctories path to search for fonts.
+ */
+export const getDirectoriesFonts = async (
+  dirPaths: string[]
+): Promise<FontDescriptor[]> => {
+  if (
+    !Array.isArray(dirPaths) ||
+    dirPaths.map((path) => typeof path !== 'string').includes(true)
+  ) {
+    throw new TypeError('dirPaths must be `string[]`');
+  }
+
+  return Promise.all(
+    dirPaths.map((dirPath) => getDirectoryFonts(dirPath))
+  ).then((dirFdList) =>
+    dirFdList.reduce((acc: FontDescriptor[], val) => acc.concat(val), [])
+  );
+};
+
+/**
+ * Search installed fonts.
+ */
+export const getInstalledFonts = async (): Promise<FontDescriptor[]> => {
+  const fontPaths = await getSystemFonts({
+    extensions: FONTKIT_AVAILABLE_FONT_EXTENSIONS,
+  });
+  return getDescriptorFromPaths(fontPaths);
+};
 
 export const getFontList = async (options?: {
   customDirectories?: string[];
@@ -20,40 +102,13 @@ export const getFontList = async (options?: {
     throw new TypeError('options.onlyCustomDirectories must be `boolean`');
   }
 
-  // path to fullpath
-  const fixedDirs =
-    options?.customDirectories?.map((dir) => path.resolve(dir)) || [];
-  const list = (
-    await getSystemFonts({
-      additionalFolders: fixedDirs,
-      extensions: ['ttf', 'otf', 'ttc', 'woff', 'woff2', 'dfont'],
-    })
-  )
-    .map((path) => {
-      try {
-        return FontDescriptor.createFromPath(path);
-      } catch (error) {
-        return;
-      }
-    })
-    .reduce((acc: FontDescriptor[], val) => (val ? acc.concat(val) : acc), []); // this reduce means arr.flat()
-
-  if (fixedDirs.length === 0 || !options?.onlyCustomDirectories) {
-    return list;
+  if (options?.onlyCustomDirectories) {
+    return getDirectoriesFonts(options?.customDirectories || []);
   }
 
-  // is file system case insnsitive
-  const caseInsensitive =
-    fs.existsSync(process.argv0) &&
-    fs.existsSync(process.argv0.toLowerCase()) &&
-    fs.existsSync(process.argv0.toUpperCase());
-  // `getSystemFonts()` always catch system fonts
-  // filter font in specified directories
-  const dirRegExp = new RegExp(
-    `^${fixedDirs
-      ?.map((dir) => `(?:${dir.replace(/\\/g, '\\\\')})`)
-      .join('|')}`,
-    caseInsensitive ? 'i' : ''
-  );
-  return list.filter((fontDescriptor) => dirRegExp.exec(fontDescriptor.path));
+  const fontPaths = await getSystemFonts({
+    additionalFolders: options?.customDirectories || [],
+    extensions: FONTKIT_AVAILABLE_FONT_EXTENSIONS,
+  });
+  return getDescriptorFromPaths(fontPaths);
 };
