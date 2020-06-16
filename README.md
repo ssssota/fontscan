@@ -53,18 +53,18 @@ Fonts in specified directory.
 Note: We recommend that you do not specify the root directory, as custom directories are searched recursively.
 
 ```js
-await fontscan.getFontList({
-  customDirectories: [
-    `C:\\Users\\${username}\\Fonts`,
-    `D:\\Fonts`
-  ],
-  onlyCustomDirectories: true
-})
+const fonts = await fontscan.getDirectoryFonts('/Library/Fonts');
+const fonts = await fontscan.getDirectoriesFonts([
+  `C:\\Users\\${username}\\Fonts`,
+  `D:\\Fonts`
+]);
 ```
 
 ## API
 
 ### `fontscan.getFontList(options?): Promise<FontDescriptor[]>`
+
+Get fontdescriptors that installed and in specified directories.
 
 - `options`
   - `customDirectories`
@@ -73,6 +73,31 @@ await fontscan.getFontList({
   - `onlyCustomDirectories`
     - `boolean`
     - default: `false`
+
+### `fontscan.getDescriptorFromPaths(fontPaths): Promise<FontDescriptor[]>`
+
+Get fontdescriptors that specified files.
+
+- `fontPaths`
+  - `string[]`
+
+### `fontscan.getDirectoryFonts(dirPath): Promise<FontDescriptor[]>`
+
+Get fontdescriptors that in specified directory.
+
+- `dirPath`
+  - `string`
+
+### `fontscan.getDirectoriesFonts(dirPaths): Promise<FontDescriptor[]>`
+
+Get fontdescriptors that in specified directories.
+
+- `dirPaths`
+  - `string[]`
+
+### `fontscan.getInstalledFonts(): Promise<FontDescriptor[]>`
+
+Get fontdescriptors that installed.
 
 ### `FontDescriptor`
 
