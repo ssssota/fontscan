@@ -51,9 +51,12 @@ describe('FontDescriptor', function () {
     });
 
     it('should throw error', () => {
-      assert.throws(FontDescriptor.createFromPath.bind(null, [1]));
+      assert.throws(FontDescriptor.createFromPath.bind(null, 1));
       assert.throws(
-        FontDescriptor.createFromPath.bind(null, ['./not-exist-file.ttf'])
+        FontDescriptor.createFromPath.bind(null, './not-exist-file.ttf')
+      );
+      assert.throws(
+        FontDescriptor.createFromPath.bind(null, './test/data/not-font.ttf')
       );
     });
   });
