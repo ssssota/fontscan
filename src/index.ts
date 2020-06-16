@@ -1,7 +1,6 @@
 import getSystemFonts from 'get-system-fonts';
 import recursiveWalk from 'get-system-fonts/dist/recursiveWalk';
 import { FontDescriptor } from './fontDescriptor';
-import path from 'path';
 import fs from 'fs';
 
 const FONTKIT_AVAILABLE_FONT_EXTENSIONS = [
@@ -17,6 +16,10 @@ export const getDescriptorFromPaths = (
   fontPaths: string[]
 ): Promise<FontDescriptor[]> =>
   new Promise((resolve, reject) => {
+    if (!Array.isArray(fontPaths)) {
+      reject(new TypeError('fontPaths must be `string[]`'));
+      return;
+    }
     try {
       const fontDescriptors = fontPaths
         .map((fontPath) => {
@@ -45,6 +48,9 @@ export const getDirectoryFonts = async (
 ): Promise<FontDescriptor[]> => {
   if (typeof dirPath !== 'string') {
     throw new TypeError('dirPath must be `string`');
+  }
+  if (!fs.existsSync(dirPath)) {
+    throw new Error(`${dirPath} is not exist`);
   }
 
   const fontPaths = await recursiveWalk(
