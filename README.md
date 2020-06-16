@@ -62,7 +62,9 @@ const fonts = await fontscan.getDirectoriesFonts([
 
 ## API
 
-### `fontscan.getFontList(options?): Promise<FontDescriptor[]>`
+### `fontscan`
+
+#### `fontscan.getFontList(options?): Promise<FontDescriptor[]>`
 
 Get fontdescriptors that installed and in specified directories.
 
@@ -74,28 +76,28 @@ Get fontdescriptors that installed and in specified directories.
     - `boolean`
     - default: `false`
 
-### `fontscan.getDescriptorFromPaths(fontPaths): Promise<FontDescriptor[]>`
+#### `fontscan.getDescriptorFromPaths(fontPaths): Promise<FontDescriptor[]>`
 
 Get fontdescriptors that specified files.
 
 - `fontPaths`
   - `string[]`
 
-### `fontscan.getDirectoryFonts(dirPath): Promise<FontDescriptor[]>`
+#### `fontscan.getDirectoryFonts(dirPath): Promise<FontDescriptor[]>`
 
 Get fontdescriptors that in specified directory.
 
 - `dirPath`
   - `string`
 
-### `fontscan.getDirectoriesFonts(dirPaths): Promise<FontDescriptor[]>`
+#### `fontscan.getDirectoriesFonts(dirPaths): Promise<FontDescriptor[]>`
 
 Get fontdescriptors that in specified directories.
 
 - `dirPaths`
   - `string[]`
 
-### `fontscan.getInstalledFonts(): Promise<FontDescriptor[]>`
+#### `fontscan.getInstalledFonts(): Promise<FontDescriptor[]>`
 
 Get fontdescriptors that installed.
 
