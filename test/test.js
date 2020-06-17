@@ -184,7 +184,7 @@ describe('fontscan', function () {
   });
 
   describe('#getInstalledFonts', function () {
-    this.timeout(10 * 1000);
+    this.timeout(30 * 1000);
     it('should return font descriptors', () => {
       return fontscan.getInstalledFonts().then((fdList) => {
         assert.ok(Array.isArray(fdList));
