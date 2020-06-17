@@ -1,5 +1,7 @@
 # fontscan
 
+[![Test](https://github.com/ssssota/fontscan/workflows/Test/badge.svg)](https://github.com/ssssota/fontscan/actions?query=workflow%3ATest)
+
 Get font list in specified directory(default system fonts).
 
 This project respect [font-manager](https://github.com/foliojs/font-manager).
